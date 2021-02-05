@@ -55,7 +55,9 @@ export default function Home(props) {
                       
                         
                         <figure>
+                          <a href={slice.primary.main_image.url} target="new">
                           <img src={slice.primary.main_image.url} alt={slice.primary.main_image.alt} className="img-responsive" />
+                          </a>
                         </figure>
                         <div className="ws-works-caption text-center">
                           <h3 className="ws-item-title">{slice.primary.title[0].text}</h3>
