@@ -65,7 +65,7 @@ export default function Home(props) {
                           <div className="ws-item-separator"></div>
 
                           
-                          <div className="ws-item-price">${(slice.primary.price).toFixed(2)}</div>
+                          {/*<div className="ws-item-price">${(slice.primary.price).toFixed(2)}</div>*/}
                         </div>
                       
                     </div>
