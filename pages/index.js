@@ -1,11 +1,12 @@
 import Head from 'next/head'
+import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { apiEndpoint, client } from '../prismic-configuration'
 import {RichText} from 'prismic-reactjs'
 
 export default function Home(props) {
   const document = props.home_page;
-  console.log(document);
+  const [lightbox, setLightbox] = useState(null);
 
   return (
     <div className={styles.container}>
@@ -55,13 +56,13 @@ export default function Home(props) {
             if (slice.slice_type === 'folded_book') {
               return (
                     
-                      <div className="col-sm-6 col-md-4 ws-works-item" key={slice.uid}>
+                      <div className="col-sm-6 col-md-4 ws-works-item" key={index}>
                       
                         
                         <figure>
-                          <a href={slice.primary.main_image.url} target="new">
-                          <img src={slice.primary.main_image.url} alt={slice.primary.main_image.alt} className="img-responsive" />
-                          </a>
+                          <button style={{background:'none',border:'none',padding:0,cursor:'pointer'}} onClick={() => setLightbox({ url: slice.primary.main_image.url, alt: slice.primary.main_image.alt, title: slice.primary.title[0].text })}>
+                            <img src={slice.primary.main_image.url} alt={slice.primary.main_image.alt} className="img-responsive" />
+                          </button>
                         </figure>
                         <div className="ws-works-caption text-center">
                           <h3 className="ws-item-title">{slice.primary.title[0].text}</h3>
@@ -91,6 +92,15 @@ export default function Home(props) {
         </div>
       </div>
 
+      {lightbox && (
+        <div className="ws-lightbox-overlay" onClick={() => setLightbox(null)}>
+          <button className="ws-lightbox-close" onClick={() => setLightbox(null)}>&times;</button>
+          <div className="ws-lightbox-content" onClick={e => e.stopPropagation()}>
+            <img src={lightbox.url} alt={lightbox.alt} />
+            {lightbox.title && <p className="ws-lightbox-title">{lightbox.title}</p>}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -101,8 +111,6 @@ export async function getStaticProps() {
   // const res = await client.query('');
   //const res = await client.query('[at(document.type, "post")]')
   const home_page = await client.getSingle("home_page")
-  console.log(home_page.data);
-
 
   return {
     props: {
