@@ -37,7 +37,7 @@ Table of Contents:
 body{
 	font-family: 'Merriweather', serif;
 	color: #7a7a7a;
-    background-color: #faf9f5;
+    background-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -340,12 +340,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	margin: 15px auto 20px auto;
 }
 .ws-item-separator{
-	background-color: #CCB48E;
+	background-color: #C2A476;
 	height: 1px;
 	position: relative;
-	width: 40px;
+	width: 30px;
 	display: block;
-	margin: 10px auto 10px auto;
+	margin: 8px auto 0 auto;
 }
 
 /*--------------------------------------
@@ -714,7 +714,7 @@ a.ws-instagram-link{
 ---------------------------------------*/
 .ws-works-section{
 	padding: 50px 0 80px 0;
-	background-color: #faf9f5;
+	background-color: transparent;
 }
 
 /* Masonry columns layout — overrides Bootstrap .row flex */
@@ -738,6 +738,17 @@ a.ws-instagram-link{
 	-webkit-column-break-inside: avoid;
 	padding-top: 0;
 	margin-bottom: 18px;
+	background: #ffffff;
+	border-radius: 3px;
+	box-shadow: 0 2px 14px rgba(194, 164, 118, 0.18), 0 1px 4px rgba(0,0,0,0.06);
+	overflow: hidden;
+	-ms-transition: box-shadow .3s ease-in-out, transform .3s ease-in-out;
+	-webkit-transition: box-shadow .3s ease-in-out, transform .3s ease-in-out;
+	transition: box-shadow .3s ease-in-out, transform .3s ease-in-out;
+}
+.ws-works-item:hover {
+	box-shadow: 0 6px 28px rgba(194, 164, 118, 0.32), 0 2px 8px rgba(0,0,0,0.1);
+	transform: translateY(-3px);
 }
 .ws-works-item a{
 	color: #353535;
@@ -756,8 +767,10 @@ a.ws-instagram-link{
 	color: #353535;
 }
 .ws-works-caption{
-	margin-top: 10px;
-	margin-bottom: 6px;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 14px 14px 16px 14px;
+	background: linear-gradient(to bottom, #fffdf8, #fff8ef);
 }
 h3.ws-item-title{
 	font-size: 11px;
@@ -765,8 +778,8 @@ h3.ws-item-title{
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 2.5px;
-	color: #555;
-	margin-top: 8px;
+	color: #666;
+	margin-top: 0;
 }
 .ws-item-category{
 	color: #C2A476;

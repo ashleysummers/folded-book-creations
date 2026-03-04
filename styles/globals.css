@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: 'Merriweather', Georgia, serif;
   background-color: #faf9f5;
+  background-image: linear-gradient(160deg, #fdf8f0 0%, #faf9f5 40%, #f5f0ea 100%);
+  background-attachment: fixed;
 }
 
 a {
