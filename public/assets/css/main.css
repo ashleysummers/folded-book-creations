@@ -34,11 +34,12 @@ Table of Contents:
 /*--------------------------------------
 	1) GENERAL STYLES
 ---------------------------------------*/
-body{		
-	font-family: 'Merriweather', serif;		
-	color: #999;	    
+body{
+	font-family: 'Merriweather', serif;
+	color: #7a7a7a;
+    background-color: #faf9f5;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;	
+    -moz-osx-font-smoothing: grayscale;
 }
 h1, h2, h3, h4, h5, h6{		
 	letter-spacing: 1.5px;
@@ -598,14 +599,21 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 ---------------------------------------*/
 .ws-about-section{
 	text-align: center;
-	border-bottom: 1px solid #f2f2f2;
-	padding: 70px 0;
+	border-bottom: 1px solid #ede9e0;
+	padding: 40px 0 60px 0;
 }
 .ws-about-content h3{
-	font-size: 22px;		
+	font-size: 20px;
 	color: #353535;
-	text-transform: uppercase;	
-	letter-spacing: 3px;	
+	text-transform: uppercase;
+	letter-spacing: 4px;
+}
+.ws-about-content p {
+	max-width: 620px;
+	margin: 0 auto 12px auto;
+	font-size: 14px;
+	line-height: 28px;
+	color: #888;
 }
 .ws-featured-collections{
 	margin-top: 40px;
@@ -664,7 +672,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	background-color: rgba(0,0,0, .0);		
 }
 #ws-instagram-section{
-	border-top: 1px solid #f2f2f2;
+	border-top: 1px solid #ede9e0;
 	padding: 70px 0;
 }
 .ws-about-page h3{
@@ -702,8 +710,35 @@ a.ws-instagram-link{
 }
 
 /*--------------------------------------
-	4) WORKS SECTION
+	4) WORKS SECTION - MASONRY
 ---------------------------------------*/
+.ws-works-section{
+	padding: 50px 0 80px 0;
+	background-color: #faf9f5;
+}
+
+/* Masonry columns layout — overrides Bootstrap .row flex */
+.ws-works-section .row {
+	display: block;
+	columns: 3;
+	column-gap: 18px;
+}
+
+/* Each Bootstrap col becomes a full-width masonry brick */
+.ws-works-section .col-sm-6,
+.ws-works-section .col-md-4 {
+	display: block;
+	float: none;
+	width: 100%;
+	padding: 0;
+}
+
+.ws-works-item{
+	break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+	padding-top: 0;
+	margin-bottom: 18px;
+}
 .ws-works-item a{
 	color: #353535;
 	-ms-transition: .3s ease-in-out;
@@ -711,13 +746,7 @@ a.ws-instagram-link{
 	transition: .3s ease-in-out;
 }
 .ws-works-item a:hover{
-	color: #C2A476;		
-}
-.ws-works-item{	
-	padding-top: 40px;
-}
-.ws-works-section{
-	padding: 70px 0;
+	color: #C2A476;
 }
 .ws-works-title h3{
 	font-size: 22px;
@@ -727,22 +756,27 @@ a.ws-instagram-link{
 	color: #353535;
 }
 .ws-works-caption{
-	margin-top: 15px;
+	margin-top: 10px;
+	margin-bottom: 6px;
 }
-h3.ws-item-title{	
-	font-size: 20px;			
+h3.ws-item-title{
+	font-size: 11px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 700;
 	text-transform: uppercase;
-	margin-top: 5px;
+	letter-spacing: 2.5px;
+	color: #555;
+	margin-top: 8px;
 }
 .ws-item-category{
 	color: #C2A476;
-	font-size: 11px;	
+	font-size: 11px;
 	letter-spacing: 1px;
 	font-weight: bold;
 	text-transform: uppercase;
 }
 .ws-item-price{
-	color: #999;	
+	color: #999;
 	font-style: italic;
 }
 .ws-item-price del{
@@ -753,19 +787,41 @@ h3.ws-item-title{
 	padding: 0 5px;
 	text-decoration: none;
 }
-.ws-works-item figure{		
+
+/* Natural aspect ratio — no fixed height */
+.ws-works-item figure{
 	overflow: hidden;
+	height: auto;
+	margin: 0;
 }
 .ws-works-item figure img{
+	width: 100%;
+	height: auto;
+	display: block;
 	-webkit-transform: scale(1);
 	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+	-webkit-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
 }
 .ws-works-item figure:hover img{
-	opacity: .8;
-	-webkit-transform: scale(1.1);
-	transform: scale(1.1);
+	opacity: .85;
+	-webkit-transform: scale(1.04);
+	transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+	.ws-works-section .row {
+		columns: 2;
+		column-gap: 12px;
+	}
+	.ws-works-item {
+		margin-bottom: 12px;
+	}
+}
+@media (max-width: 480px) {
+	.ws-works-section .row {
+		columns: 1;
+	}
 }
 .ws-item-offer{	
 	position: relative;
@@ -2077,17 +2133,18 @@ span.ws-journal-category{
 	list-style: none;
 	padding-left: 0;	
 }
-.ws-footer-bar{	
-	padding: 10px 0;
-	background-color: #353535;	
+.ws-footer-bar{
+	padding: 18px 0;
+	background-color: #2e2b26;
 }
 .ws-footer-bar p{
 	color: #C2A476;
 	text-align: center;
 	text-transform: uppercase;
 	font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
+	font-weight: 600;
+	letter-spacing: 3px;
+	margin: 0;
 }
 ul.ws-footer-social i{
 	margin-right: 5px;

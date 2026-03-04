@@ -1,0 +1,11 @@
+[     545ms] [ERROR] Warning: Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s 
+
+Check the render method of `Home`.  
+    at div
+    at Home (webpack-internal:///./pages/index.js:23:26)
+    at MyApp (webpack-internal:///./pages/_app.js:11:27)
+    at ErrorBoundary (webpack-internal:///./node_modules/next/dist/compiled/@next/react-dev-overlay/dist/client.js:8:20742)
+    at ReactDevOverlay (webpack-internal:///./node_modules/next/dist/compiled/@next/react-dev-overlay/dist/client.js:8:23635)
+    at Container (webpack-internal:///./node_modules/next/dist/client/index.js:70:9)
+    at AppContainer (webpack-internal:///./node_modules/next/dist/client/index.js:216:26)
+    at Root (webpack-internal:///./node_modules/next/dist/client/index.js:403:27) @ webpack-internal:///./node_modules/next/dist/client/next-dev.js:27

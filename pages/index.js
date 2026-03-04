@@ -10,6 +10,10 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" />
+
         <script src="assets/js/plugins/jquery-1.11.3.min.js"></script>
 
         <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -83,9 +87,7 @@ export default function Home(props) {
       {/* Footer */}
       <div className="ws-footer-bar">
         <div className="container">
-          <div className="pull-left">
-            <p>Folded Book Creations &copy; 2020 All rights reserved.</p>
-          </div>
+          <p>Folded Book Creations &copy; {new Date().getFullYear()} All rights reserved.</p>
         </div>
       </div>
 
