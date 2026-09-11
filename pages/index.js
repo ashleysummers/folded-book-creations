@@ -10,6 +10,7 @@ function thumb(url) {
   return url + (url.includes('?') ? '&' : '?') + 'w=800&auto=compress,format';
 }
 
+
 // Extract category names from the slice – supports both the old single‐category field
 // and the new repeater of categories so a book can be classified multiple ways.
 function sliceCategories(slice) {
@@ -62,6 +63,7 @@ export default function Home(props) {
     window.document.querySelectorAll('.ws-works-item').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
 
   // Group works by category (now supports multiple categories per book),
   // preserving the order that Prismic delivers the slices.
@@ -193,6 +195,7 @@ export default function Home(props) {
                             );
                           })()
                         )}
+
                       </div>
                     </div>
                   )
