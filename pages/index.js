@@ -42,9 +42,29 @@ function sliceCategories(slice) {
   return Array.from(categories);
 }
 
+// Stable, URL-safe id for category anchors
+function categoryId(name) {
+  return 'category-' + String(name)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function scrollToCategory(e, id) {
+  e.preventDefault();
+  window.document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function scrollToCollection(e) {
+  e.preventDefault();
+  window.document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 export default function Home(props) {
   const document = props.home_page;
   const [lightbox, setLightbox] = useState(null);
+  const [showBackToCollection, setShowBackToCollection] = useState(false);
 
   // Staggered reveal of gallery cards on scroll
   useEffect(() => {
@@ -62,6 +82,18 @@ export default function Home(props) {
     }, { rootMargin: '0px 0px -40px 0px', threshold: 0.1 });
     window.document.querySelectorAll('.ws-works-item').forEach(el => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  // Show "back to collection" after scrolling past the collection heading
+  useEffect(() => {
+    const onScroll = () => {
+      const el = window.document.getElementById('collection');
+      if (!el) return;
+      setShowBackToCollection(window.scrollY > el.offsetTop + 180);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
 
@@ -157,16 +189,33 @@ export default function Home(props) {
 
 
       {/* Work collection start */}
-      <section className="ws-works-section">
+      <section className="ws-works-section" id="collection">
         <div className="container">
           <div className="ws-section-title">
             <h2>The Collection</h2>
             <div className="ws-separator"></div>
           </div>
+          {groups.some(g => g.name) && (
+            <nav className="ws-category-nav" aria-label="Collection categories">
+              {groups.filter(g => g.name).map((group) => {
+                const id = categoryId(group.name);
+                return (
+                  <a
+                    key={id}
+                    href={'#' + id}
+                    className="ws-category-nav-link"
+                    onClick={e => scrollToCategory(e, id)}
+                  >
+                    {group.name}
+                  </a>
+                );
+              })}
+            </nav>
+          )}
           {groups.map((group, gi) => (
             <div className="ws-works-group" key={gi}>
               {group.name && (
-                <div className="ws-category-bar">
+                <div className="ws-category-bar" id={categoryId(group.name)}>
                   <h3>{group.name}</h3>
                 </div>
               )}
@@ -215,6 +264,16 @@ export default function Home(props) {
           <p>Folded Book Creations &copy; {new Date().getFullYear()} All rights reserved.</p>
         </div>
       </div>
+
+      {showBackToCollection && (
+        <a
+          href="#collection"
+          className="ws-back-to-collection"
+          onClick={scrollToCollection}
+        >
+          Back to Collection
+        </a>
+      )}
 
       {lightbox && (
         <div className="ws-lightbox-overlay" onClick={() => setLightbox(null)}>

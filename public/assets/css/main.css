@@ -2478,6 +2478,80 @@ ul.ws-footer-payments li{
 /*--------------------------------------
 	18) GALLERY UPGRADES
 ---------------------------------------*/
+/* Category jump links under "The Collection" */
+.ws-category-nav{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	gap: 10px 14px;
+	margin: -10px 0 42px 0;
+	padding: 0 10px;
+}
+.ws-category-nav-link{
+	display: inline-block;
+	font-family: 'Lato', sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #C2A476;
+	border: 1px solid rgba(194, 164, 118, 0.45);
+	padding: 8px 14px;
+	border-radius: 3px;
+	-webkit-transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+	transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.ws-category-nav-link:hover,
+.ws-category-nav-link:focus{
+	color: #fff;
+	background-color: #2e2b26;
+	border-color: #C2A476;
+	text-decoration: none;
+}
+
+/* Floating back-to-collection control */
+.ws-back-to-collection{
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	z-index: 40;
+	display: inline-block;
+	font-family: 'Lato', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #C2A476;
+	background-color: #2e2b26;
+	border: 1px solid #C2A476;
+	padding: 12px 16px;
+	border-radius: 3px;
+	box-shadow: 0 8px 24px rgba(26, 22, 17, 0.28);
+	-webkit-transition: background-color .25s ease, color .25s ease, -webkit-transform .25s ease;
+	transition: background-color .25s ease, color .25s ease, transform .25s ease;
+}
+.ws-back-to-collection:hover,
+.ws-back-to-collection:focus{
+	color: #2e2b26;
+	background-color: #C2A476;
+	text-decoration: none;
+	-webkit-transform: translateY(-2px);
+	transform: translateY(-2px);
+}
+@media (max-width: 480px){
+	.ws-back-to-collection{
+		right: 14px;
+		bottom: 14px;
+		padding: 10px 12px;
+		letter-spacing: 1.5px;
+	}
+}
+
 /* Category bar */
 .ws-works-group + .ws-works-group{
 	margin-top: 35px;
@@ -2488,6 +2562,7 @@ ul.ws-footer-payments li{
 	background-color: #2e2b26;
 	border-left: 3px solid #C2A476;
 	border-radius: 3px;
+	scroll-margin-top: 24px;
 }
 .ws-category-bar h3{
 	font-family: 'Lato', sans-serif;
