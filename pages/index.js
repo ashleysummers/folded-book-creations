@@ -42,11 +42,19 @@ function sliceCategories(slice) {
   return Array.from(categories);
 }
 
-// Stable, URL-safe id for category anchors
+// Canonical display label (trim + collapse whitespace; keep original casing of first seen)
+function normalizeCategoryName(name) {
+  return String(name).trim().replace(/\s+/g, ' ');
+}
+
+// Case-insensitive key so "Miscellaneous" and "miscellaneous" are one category
+function categoryKey(name) {
+  return normalizeCategoryName(name).toLowerCase();
+}
+
+// Stable, URL-safe id for category anchors (from the normalized key)
 function categoryId(name) {
-  return 'category-' + String(name)
-    .toLowerCase()
-    .trim()
+  return 'category-' + categoryKey(name)
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 }
@@ -99,6 +107,7 @@ export default function Home(props) {
 
   // Group works by category (now supports multiple categories per book),
   // preserving the order that Prismic delivers the slices.
+  // Keys are case-insensitive so casing typos in Prismic don't split groups or collide ids.
   const groups = [];
   document.data.body.forEach(slice => {
     if (slice.slice_type !== 'folded_book') return;
@@ -106,13 +115,17 @@ export default function Home(props) {
 
     if (names.length === 0) {
       // Uncategorized works – keep together
-      let group = groups.find(g => g.name === null);
-      if (!group) { group = { name: null, items: [] }; groups.push(group); }
+      let group = groups.find(g => g.key === null);
+      if (!group) { group = { key: null, name: null, items: [] }; groups.push(group); }
       group.items.push(slice);
     } else {
       names.forEach(name => {
-        let group = groups.find(g => g.name === name);
-        if (!group) { group = { name, items: [] }; groups.push(group); }
+        const key = categoryKey(name);
+        let group = groups.find(g => g.key === key);
+        if (!group) {
+          group = { key, name: normalizeCategoryName(name), items: [] };
+          groups.push(group);
+        }
         group.items.push(slice);
       });
     }
